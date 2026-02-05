@@ -1,0 +1,448 @@
+:root {
+    --space-bg: #0b0d17;
+    --panel-bg: rgba(20, 24, 40, 0.85);
+    --primary: #4cc9f0;
+    --accent: #f72585;
+    --text: #ffffff;
+    --border: rgba(76, 201, 240, 0.3);
+}
+
+body {
+    background: var(--space-bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#galaxyCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.nebula-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 120%, rgba(247, 37, 133, 0.2), transparent 70%);
+    pointer-events: none;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(11, 13, 23, 0.8);
+}
+
+.logo {
+    font-family: 'Orbitron';
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.star-text {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.badge {
+    font-size: 0.6rem;
+    background: var(--accent);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.status-indicator {
+    font-size: 0.7rem;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pulsar-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+    animation: pulse 1.5s infinite;
+}
+
+.input-section {
+    padding: 20px;
+}
+
+.galaxy-border {
+    display: flex;
+    border: 1px solid #333;
+    padding: 5px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: 0.3s;
+}
+
+.galaxy-border:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.2);
+}
+
+#problemInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 12px;
+    font-family: 'Rajdhani';
+    font-size: 1.1rem;
+    outline: none;
+    font-weight: 500;
+}
+
+.mic-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mic-btn:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px var(--accent));
+}
+
+.mic-btn.listening {
+    animation: pulse 0.5s infinite;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #888;
+    padding: 12px;
+    font-family: 'Orbitron';
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 8px;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.2), rgba(247, 37, 133, 0.2));
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.3);
+}
+
+.mode-section {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.upload-zone {
+    flex: 1;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    min-height: 200px;
+    cursor: pointer;
+}
+
+.upload-zone:hover {
+    border-color: var(--accent);
+    background: rgba(247, 37, 133, 0.05);
+}
+
+#previewImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.galaxy-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.camera-container {
+    height: 350px;
+    background: #000;
+    border: 1px solid #333;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.orbital-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--primary);
+    animation: spin 10s linear infinite;
+}
+
+.orbital-ring::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.cosmic-btn {
+    margin-top: 15px;
+    padding: 15px;
+    border: none;
+    background: linear-gradient(90deg, var(--accent), #b5179e);
+    color: white;
+    font-family: 'Orbitron';
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.cosmic-btn:hover {
+    background: var(--accent);
+    box-shadow: 0 0 25px rgba(247, 37, 133, 0.5);
+}
+
+.blue-glow {
+    background: linear-gradient(90deg, var(--primary), #4895ef);
+}
+
+.blue-glow:hover {
+    box-shadow: 0 0 25px rgba(76, 201, 240, 0.5);
+}
+
+.glass-panel {
+    background: rgba(15, 20, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    animation: slideUp 0.5s ease-out;
+    margin-bottom: 40px;
+    border-radius: 12px;
+}
+
+.impact-grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-card.gold {
+    border-bottom: 3px solid #ffd700;
+    color: #ffd700;
+}
+
+.stat-card.blue {
+    border-bottom: 3px solid var(--primary);
+    color: var(--primary);
+}
+
+.val {
+    font-family: 'Orbitron';
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+.terminal-text {
+    font-family: monospace;
+    color: #d0d0d0;
+    line-height: 1.5;
+}
+
+.steps-box ul {
+    padding-left: 20px;
+    color: #aaa;
+}
+
+.steps-box li {
+    margin-bottom: 8px;
+}
+
+.chat-section {
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.chat-section h4 {
+    font-family: 'Orbitron';
+    color: var(--primary);
+    margin: 0 0 10px 0;
+}
+
+.chat-log {
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.msg {
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    max-width: 80%;
+}
+
+.msg.user {
+    background: rgba(247, 37, 133, 0.15);
+    color: #ff99c8;
+    margin-left: auto;
+    text-align: right;
+}
+
+.msg.ai {
+    background: rgba(76, 201, 240, 0.15);
+    color: #ade8f4;
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 5px;
+}
+
+#chatInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.send-btn {
+    background: var(--primary);
+    border: none;
+    color: black;
+    padding: 0 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.star-loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
