@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFix | Galaxy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=6">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Orbitron:wght@500;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <canvas id="galaxyCanvas"></canvas>
+    <div class="nebula-overlay"></div>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">ECO<span class="star-text">FIX</span> <span class="badge">GALAXY</span></div>
+            <div class="status-indicator"><span class="pulsar-dot"></span> ORBITAL LINK ACTIVE</div>
+        </header>
+
+        <div class="input-section">
+            <div class="input-wrapper galaxy-border">
+                <input type="text" id="problemInput" placeholder="Describe the malfunction...">
+                <button id="micBtn" onclick="toggleSpeech()" class="mic-btn">🎙️</button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('scan')">SCAN</button>
+            <button class="tab-btn" onclick="switchTab('live')">VISION</button>
+            <button class="tab-btn" onclick="switchTab('history')">ARCHIVE</button>
+        </div>
+
+        <div id="scanMode" class="mode-section active">
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                <img id="previewImg" src="" class="hidden">
+                <div id="placeholder">
+                    <div class="galaxy-icon">🪐</div>
+                    <h3>UPLOAD MATTER</h3>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+            <button class="action-btn cosmic-btn" onclick="processUpload()">INITIATE SEQUENCE</button>
+        </div>
+
+        <div id="liveMode" class="mode-section hidden">
+            <div class="camera-container">
+                <video id="videoFeed" autoplay playsinline muted></video>
+                <img id="snapshotPreview" class="hidden">
+                <div class="hud-overlay">
+                    <div class="orbital-ring"></div>
+                </div>
+                <canvas id="captureCanvas" class="hidden"></canvas>
+            </div>
+            <button class="action-btn cosmic-btn blue-glow" onclick="captureAndAnalyze()">CAPTURE LIGHT</button>
+        </div>
+
+        <div id="historyMode" class="mode-section hidden">
+            <div id="historyList" class="history-list"></div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="star-loader"></div>
+            <p class="blink">CONSULTING THE STARS...</p>
+        </div>
+
+        <div id="resultsArea" class="hidden glass-panel">
+            <div class="impact-grid">
+                <div class="stat-card gold">
+                    <span class="label">WEALTH SAVED</span>
+                    <span id="moneyVal" class="val">$0</span>
+                </div>
+                <div class="stat-card blue">
+                    <span class="label">E-WASTE DIVERTED</span>
+                    <span id="ewasteVal" class="val">0kg</span>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2 id="deviceTitle">UNKNOWN OBJECT</h2>
+                <p id="diagnosisText" class="terminal-text">...</p>
+            </div>
+
+            <div class="steps-box">
+                <h4>REPAIR CONSTELLATION</h4>
+                <ul id="stepsList"></ul>
+            </div>
+
+            <div class="alert-box">
+                ⚠️ <span id="safetyText">WARNING</span>
+            </div>
+
+            <div class="chat-section">
+                <h4>COMMS CHANNEL</h4>
+                <div id="chatLog" class="chat-log"></div>
+                <div class="chat-input-row">
+                    <input type="text" id="chatInput" placeholder="Send signal...">
+                    <button onclick="sendChatMessage()" class="send-btn">➤</button>
+                </div>
+            </div>
+
+            <button id="speakBtn" class="sm-btn" onclick="speakResult()">AUDIO LOG</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}?v=6"></script>
+</body>
+
+</html>
