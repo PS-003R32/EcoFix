@@ -7,7 +7,7 @@
 > **"Don't toss it. Fix it."** > EcoFix is a multimodal AI assistant that turns anyone into a repair technician. Powered by Google's **Gemini 3 Flash**, it diagnoses broken electronics via live video, voice, and images, calculating real-time e-waste diversion metrics to gamify sustainability.
 
 ---
-## 🚀 Key Features
+## Features
 
 ### 1. Multimodal Diagnosis (Gemini 3)
 Upload an image or use the **Live Vision Camera** to show EcoFix the problem. The AI analyzes visual data instantly to identify the device and the damage.
