@@ -59,4 +59,23 @@ python app.py
 ```
 
 ### Step 5: Launch
-Open your browser and navigate to: ``` http://localhost:5000 ```
+Open your browser and navigate to: 
+```text
+http://localhost:5000
+```
+
+---
+## Usage Guide
+* **Select Mode:** Choose SCAN (Upload) or VISION (Live Camera).
+* **Input Context:** (Optional) Type or use the Microphone button to describe the issue (e.g., "Screen is cracked").
+* **Capture/Upload:** Click "Initiate Sequence" or "Capture Light."
+* **View Results:**
+- See the Diagnosis and Repair Steps.
+- Check your Impact Card (E-Waste & Money Saved).
+- Read the Safety Warning.
+* **Chat:** Use the chat box at the bottom to ask follow-up questions about the repair.
+* **Archive:** Visit the ARCHIVE tab to see a history of your past repairs.
+
+---
+## License
+Distributed under the MIT License.  – see the [LICENSE](LICENSE) file for details.
