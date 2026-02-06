@@ -19,3 +19,30 @@ Hands busy with a screwdriver? No problem. Use the **integrated microphone** to 
 EcoFix gamifies sustainability by calculating:
 * **E-Waste Diverted:** The actual weight of the device kept out of a landfill (e.g., *0.18 kg* for a smartphone).
 * **Wealth Saved:** The estimated difference between the repair cost and buying a new unit.
+
+---
+## Technologies
+
+* **AI Model:** Google Gemini 3 Flash Preview (via `google-genai` SDK) [NOTE:run the `check_model.py` script to see available models in your plan.]
+* **Backend:** Python, Flask
+* **Frontend:** HTML5, CSS3, JavaScript
+* **Audio:** Web Speech API (Voice-to-Text)
+* **Database:** JSON-based local storage (Session History)
+
+---
+## 💻 Installation & Setup
+
+### Prerequisites
+* Python 3.8+
+* A Google Cloud Project with the **Gemini API** enabled.
+* [Get a Gemini API Key here](https://aistudio.google.com/)
+
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/PS-003R32/EcoFix.git
+cd EcoFix
+```
+### Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
