@@ -30,7 +30,7 @@ EcoFix gamifies sustainability by calculating:
 * **Database:** JSON-based local storage (Session History)
 
 ---
-## 💻 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 * Python 3.8+
@@ -46,3 +46,17 @@ cd EcoFix
 ```bash
 pip install -r requirements.txt
 ```
+### Step 3: Configure API Key
+Open `app.py` and locate the API Key section. Security Tip: For production, use environment variables. For testing:
+
+```python
+# In app.py
+API_KEY = "PASTE_YOUR_GEMINI_API_KEY_HERE"
+```
+### Step 4: Run the Application
+```bash
+python app.py
+```
+
+### Step 5: Launch
+Open your browser and navigate to: ``` http://localhost:5000 ```
