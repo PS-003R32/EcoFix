@@ -63,7 +63,7 @@ Open your browser and navigate to:
 ```text
 http://localhost:5000
 ```
-> Watch EcoFix in action [here]()!!
+> Watch EcoFix in action [here](https://youtu.be/x3MIHhwZ7Ds?si=8k2XgjgiyIefDwPG)!!
 ---
 ## Usage Guide
 * **Select Mode:** Choose SCAN (Upload) or VISION (Live Camera).
